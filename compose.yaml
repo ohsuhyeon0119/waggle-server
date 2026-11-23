@@ -1,0 +1,26 @@
+# 로컬 개발용 MySQL. 조원 모두 같은 종류와 버전을 쓰기 위한 것이다.
+# 테스트는 Testcontainers 가 컨테이너를 따로 띄우므로 이 구성과 무관하다.
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: waggle-mysql-local
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: waggle
+      MYSQL_USER: waggle
+      MYSQL_PASSWORD: waggle
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uwaggle", "-pwaggle"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:

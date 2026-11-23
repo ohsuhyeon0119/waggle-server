@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: seminar
+  datasource:
+    # DATETIME 칼럼은 UTC 로 읽고 쓴다. 그 전제는 SeminarApplication 이 JVM 기본 시간대를
+    # UTC 로 고정해 두는 것이다.
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/waggle?characterEncoding=UTF-8}
+    username: ${SPRING_DATASOURCE_USERNAME:waggle}
+    password: ${SPRING_DATASOURCE_PASSWORD:waggle}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 8080
+
+jwt:
+  # Access Token 서명 키(HS256). UTF-8 로 32바이트 이상이어야 한다. 만료는 발급 후 1시간으로 고정이다.
+  # 운영에서는 JWT_SECRET 으로 반드시 덮어쓴다. 바뀌면 발급된 토큰이 모두 무효가 된다.
+  secret: ${JWT_SECRET:local-development-only-secret-do-not-use-in-production}
+
+waggle:
+  cors:
+    # 프론트가 뜨는 출처. 쉼표로 여러 개. 기본값은 로컬 개발용.
+    allowed-origins: ${WAGGLE_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:4173}
+
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: method

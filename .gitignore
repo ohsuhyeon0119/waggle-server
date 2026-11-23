@@ -1,0 +1,59 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Kotlin ###
+.kotlin
+
+### AI agents ###
+.agent/
+.claude/
+.codex/
+.gstack/
+
+# 운영진 전용 문서 (수강생 fork 레포에 공개하지 않음)
+docs/세미나.md
+docs/권한.md
+docs/ERD.md
+docs/API.md
+docs/개요.md
+
+# 공개 스켈레톤용 마이그레이션 원본 (배포 시 db/migration/V1__init.sql 로 복사)
+V1__init.template.sql
+
+# 배포 설정(로컬 전용, 비밀번호 포함)
+deploy/.env
